@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EditorSnap : MonoBehaviour
 {
     [SerializeField][Range(1f,20f)] private float gridSize = 10f ;
-    [SerializeField] private TextMesh gridPosition;
+    [SerializeField] private TextMesh gridPosition = null;
     [SerializeField][Range(1f,20f)] private float uniforScaling = 10f;
 
     void Update()
@@ -16,10 +16,13 @@ public class EditorSnap : MonoBehaviour
         snapPos.y = 0;
         snapPos.z = Mathf.RoundToInt(transform.position.z / gridSize ) *gridSize;
         transform.position = snapPos;
-        
-        gridPosition.text = transform.position.z/10 + "," + transform.position.x/10;
+
+        string blockLabel = transform.position.x / 10 + "," + transform.position.z / 10;
+
+        gridPosition.text = blockLabel;
 
         transform.localScale = new Vector3(uniforScaling,uniforScaling,uniforScaling);
+        gameObject.name = blockLabel;
     }
 
 }
