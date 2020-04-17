@@ -6,12 +6,14 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     
+    [SerializeField] BFSTest spalgo=null;
     [SerializeField] List<Waypoint> path = null;
 
     // Start is called before the first frame update
     void Start()
     {
         print("Starting Patrol");
+        path = spalgo.GetPath();
         StartCoroutine(FollowPath());
 
     }

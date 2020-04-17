@@ -7,7 +7,7 @@ public class EditorSnap : MonoBehaviour
 {
     [SerializeField][Range(1f,20f)] private float gridSize = 10f ;
     [SerializeField] private TextMesh gridPosition = null;
-    [SerializeField][Range(1f,20f)] private float uniforScaling = 10f;
+    [SerializeField][Range(1f,20f)] private float uniformScaling = 10f;
 
     void Update()
     {
@@ -21,7 +21,7 @@ public class EditorSnap : MonoBehaviour
 
         gridPosition.text = blockLabel;
 
-        transform.localScale = new Vector3(uniforScaling,uniforScaling,uniforScaling);
+        transform.localScale = new Vector3(uniformScaling,uniformScaling,uniformScaling);
         gameObject.name = blockLabel;
     }
 
