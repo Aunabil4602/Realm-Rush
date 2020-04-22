@@ -43,18 +43,7 @@ public class NavigationMapper : MonoBehaviour
         {
             adList.Add(new List<int>());
             waypoints[i].nodeNumber=i;
-            
-            // Find adjacent blocks in 4 directions
-            // for(int j=0;j<4;j++)
-            // {
 
-            //     int ni = IsNeighbor( NameMap(waypoints[i].Getx(), waypoints[i].Getz(), j) );    // Get the neighbor index
-            //     if(ni>0)
-            //     {
-            //         adList[i].Add(ni);
-            //         alist+= waypoints[i].gameObject.name + "--" + waypoints[ni].gameObject.name+"\n";
-            //     }
-            // }
             foreach(Vector3 dir in directions)
             {
                 int ni = IsNeighbor(NameMap(waypoints[i].GetPos() + dir));
@@ -64,7 +53,8 @@ public class NavigationMapper : MonoBehaviour
                     alist += waypoints[i].gameObject.name + "--" + waypoints[ni].gameObject.name + "\n";
                 }
             }
-            waypoints[i].SetTopColor(Color.yellow);
+            //waypoints[i].SetTopColor(Color.yellow);
+            
         }
         Debug.Log("Adjacency list: \n"+alist);
     }
