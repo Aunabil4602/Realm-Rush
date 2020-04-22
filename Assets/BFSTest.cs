@@ -20,15 +20,6 @@ public class BFSTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //area = new List<List<int>>();
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    area.Add(new List<int>());
-        //    for (int j = 0; j < 10; j++)
-        //    {
-        //        area[i].Add(j);
-        //    }
-        //}
 
         if(nm==null) nm =  GameObject.FindObjectOfType<NavigationMapper>();
         waypoints = nm.GetWaypoints();
@@ -42,24 +33,6 @@ public class BFSTest : MonoBehaviour
         GenerateSP();
         PrintShortestPath();
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (area == null) Start();
-        //string s="";
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    for (int j = 0; j < 10; j++)
-        //    {
-        //        s+= (i.ToString() + "," + area[i][j].ToString() + "\t");
-        //    }
-        //    s += "\n";
-        //}
-        //print(s);
-        //print(area.Count);
-        
     }
 
     private void FindShortestPath()

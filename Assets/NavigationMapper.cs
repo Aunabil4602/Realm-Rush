@@ -8,6 +8,19 @@ public class NavigationMapper : MonoBehaviour
     private List<Waypoint> waypoints = null;
     private List<List<int>> adList = null;
     [SerializeField] private Waypoint startNode=null,endNode=null;
+
+    // Specify movement of our agent. Hard Code because our Game rule if fixed
+    // Allow only in X and Z directions
+    private Vector3Int[] directions={
+        new Vector3Int(1,0,0),     // Right
+        new Vector3Int(-1,0,0),    // Left
+        new Vector3Int(0,0,1),     // Forward
+        new Vector3Int(0,0,-1)     // Backword
+        // ,new Vector3Int(1,0,1)     // Upper Right
+        // ,new Vector3Int(-1,0,1)    // Upper Left
+        // ,new Vector3Int(-1,0,-1)   // Lowwer Left
+        // ,new Vector3Int(-1,0,1)    // Lower Right
+    };
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +31,7 @@ public class NavigationMapper : MonoBehaviour
         GenerateMap();
         startNode.SetTopColor(Color.green);
         endNode.SetTopColor(Color.blue);
+
     }
 
     private void GenerateMap()
@@ -31,14 +45,23 @@ public class NavigationMapper : MonoBehaviour
             waypoints[i].nodeNumber=i;
             
             // Find adjacent blocks in 4 directions
-            for(int j=0;j<4;j++)
-            {
+            // for(int j=0;j<4;j++)
+            // {
 
-                int ni = IsNeighbor( NameMap(waypoints[i].Getx(), waypoints[i].Getz(), j) );    // Get the neighbor index
-                if(ni>0)
+            //     int ni = IsNeighbor( NameMap(waypoints[i].Getx(), waypoints[i].Getz(), j) );    // Get the neighbor index
+            //     if(ni>0)
+            //     {
+            //         adList[i].Add(ni);
+            //         alist+= waypoints[i].gameObject.name + "--" + waypoints[ni].gameObject.name+"\n";
+            //     }
+            // }
+            foreach(Vector3 dir in directions)
+            {
+                int ni = IsNeighbor(NameMap(waypoints[i].GetPos() + dir));
+                if( ni>0)
                 {
                     adList[i].Add(ni);
-                    alist+= waypoints[i].gameObject.name + "--" + waypoints[ni].gameObject.name+"\n";
+                    alist += waypoints[i].gameObject.name + "--" + waypoints[ni].gameObject.name + "\n";
                 }
             }
             waypoints[i].SetTopColor(Color.yellow);
@@ -60,6 +83,11 @@ public class NavigationMapper : MonoBehaviour
         if(k ==1 ) return i.ToString() + "," + (j+1).ToString(); 
         if(k ==2 ) return (i-1).ToString() + "," + j.ToString(); 
         return (i+1).ToString() + "," + j.ToString(); 
+    }
+
+    private string NameMap(Vector3 p)
+    {
+        return p.x + "," + p.z;
     }
 
     public int GetSNode()
