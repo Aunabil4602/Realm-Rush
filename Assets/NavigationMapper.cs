@@ -77,14 +77,6 @@ public class NavigationMapper : MonoBehaviour
         return -1;
     }
 
-    private string NameMap(int i,int j,int k)
-    {
-        if(k ==0 ) return i.ToString() + "," + (j-1).ToString(); 
-        if(k ==1 ) return i.ToString() + "," + (j+1).ToString(); 
-        if(k ==2 ) return (i-1).ToString() + "," + j.ToString(); 
-        return (i+1).ToString() + "," + j.ToString(); 
-    }
-
     private string NameMap(Vector3 p)
     {
         return p.x + "," + p.z;

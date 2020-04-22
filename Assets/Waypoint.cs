@@ -12,24 +12,6 @@ public class Waypoint : MonoBehaviour
          
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // Returns x position
-    public int Getx()
-    {
-        return (int)transform.position.x/gridSize;
-    }
-
-    // Returns z position
-    public int Getz()
-    {
-        return (int)transform.position.z/gridSize;
-    }
-
     public Vector3Int GetPos()
     {
         return new Vector3Int((int)transform.position.x/gridSize,0,(int)transform.position.z/gridSize);
