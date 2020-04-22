@@ -5,6 +5,7 @@
 public class Waypoint : MonoBehaviour
 {
     public int nodeNumber = -1;
+    private const int gridSize = 10 ;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,18 @@ public class Waypoint : MonoBehaviour
     // Returns x position
     public int Getx()
     {
-        return (int)transform.position.x/(int)transform.localScale.x;
+        return (int)transform.position.x/gridSize;
     }
 
     // Returns z position
     public int Getz()
     {
-        return (int)transform.position.z/(int)transform.localScale.z;
+        return (int)transform.position.z/gridSize;
+    }
+
+    public void SetTopColor(Color c)
+    {
+        MeshRenderer topMeshRendered = transform.Find("Top").GetComponent<MeshRenderer>();
+        topMeshRendered.material.color = c;
     }
 }

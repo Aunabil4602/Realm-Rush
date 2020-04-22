@@ -168,10 +168,12 @@ public class BFSTest : MonoBehaviour
     {
         int cnode=endNode;
         spath = new List<int>();
-        while(parent[cnode]!=-1)
+        
+        while(true)
         {
             spath.Add(cnode);
             cnode= parent[cnode];
+            if(cnode==-1) break;
         }
         spath.Reverse();
     }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,6 +16,8 @@ public class NavigationMapper : MonoBehaviour
         waypoints = GetComponentsInChildren<Waypoint>().OfType<Waypoint>().ToList();    //Get the whole list of block in the scene
         //AssignNN();
         GenerateMap();
+        startNode.SetTopColor(Color.green);
+        endNode.SetTopColor(Color.blue);
     }
 
     private void GenerateMap()
@@ -31,7 +33,6 @@ public class NavigationMapper : MonoBehaviour
             // Find adjacent blocks in 4 directions
             for(int j=0;j<4;j++)
             {
-                //print("Namemap="+NameMap(waypoints[i].Getx(), waypoints[i].Getz(), j));
 
                 int ni = IsNeighbor( NameMap(waypoints[i].Getx(), waypoints[i].Getz(), j) );    // Get the neighbor index
                 if(ni>0)
@@ -40,6 +41,7 @@ public class NavigationMapper : MonoBehaviour
                     alist+= waypoints[i].gameObject.name + "--" + waypoints[ni].gameObject.name+"\n";
                 }
             }
+            waypoints[i].SetTopColor(Color.yellow);
         }
         Debug.Log("Adjacency list: \n"+alist);
     }
@@ -59,14 +61,6 @@ public class NavigationMapper : MonoBehaviour
         if(k ==2 ) return (i-1).ToString() + "," + j.ToString(); 
         return (i+1).ToString() + "," + j.ToString(); 
     }
-
-    // private void AssignNN()
-    // {
-    //     for(int i=0;i<waypoints.Count;i++)
-    //     {
-            
-    //     }
-    // }
 
     public int GetSNode()
     {

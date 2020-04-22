@@ -14,8 +14,8 @@ public class EnemyMovement : MonoBehaviour
     {
         print("Starting Patrol");
         path = spalgo.GetPath();
+        ColorPath();
         StartCoroutine(FollowPath());
-
     }
 
     IEnumerator FollowPath()
@@ -30,15 +30,13 @@ public class EnemyMovement : MonoBehaviour
         print("Ending Patrol");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ColorPath()
     {
-        
-    }
-
-    private void CalculateShortestPath()
-    {
-
+        for(int i=0;i<path.Count; i++)
+        {
+            if(i!=0 && i!= path.Count -1)
+                path[i].SetTopColor(Color.red);
+        }
     }
 
 }
